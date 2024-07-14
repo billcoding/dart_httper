@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:httphelper/src/model.dart';
-
+import 'model.dart';
 import 'typedef.dart';
 import 'package:http/http.dart' as http;
 

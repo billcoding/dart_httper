@@ -1,7 +1,7 @@
-name: httphelper
+name: httper
 description: A dart package can help you use http library easily.
 version: 1.0.0
-repository: https://github.com/billcoding/dart_httphelper
+repository: https://github.com/billcoding/dart_httper
 
 environment:
   sdk: ^3.2.0
