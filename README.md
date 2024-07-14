@@ -1,5 +1,5 @@
 # dart_httper
-A dart package can help you use http library easily.
+A dart package can help you use http library easily. Provides generics's models and callbacks for 200/400/401/404/500/Error/Others.
 
 # Features
 - Supported method: GET/POST/PUT/DELETE/POST file
