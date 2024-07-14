@@ -1,0 +1,16 @@
+name: httphelper
+description: A dart package can help you use http library easily.
+version: 1.0.0
+repository: https://github.com/billcoding/dart_httphelper
+
+environment:
+  sdk: ^3.2.0
+
+# Add regular dependencies here.
+dependencies:
+  http: ^1.2.0
+  # path: ^1.8.0
+
+dev_dependencies:
+  lints: ^2.1.0
+  test: ^1.24.0
