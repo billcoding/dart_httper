@@ -1,6 +1,6 @@
 name: httper
-description: A dart package can help you use http library easily.
-version: 1.0.0
+description: A dart package can help you use http library easily. Provides generics's models and callbacks for 200/400/401/404/500/Error/Others.
+version: 1.0.1
 repository: https://github.com/billcoding/dart_httper
 
 environment:

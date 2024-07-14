@@ -4,17 +4,22 @@ import 'model.dart';
 import 'typedef.dart';
 import 'package:http/http.dart' as http;
 
+/// The Http class provides common http methods for generics.
+/// Such as: GET / POST / PUT / DELETE / POST file
 abstract class Http {
   static String _baseUrl = 'http://localhost:8080';
 
   static Uri _getUrl(String url) =>
       Uri.parse(url.contains("http") ? url : "$_baseUrl$url");
 
+  /// Set the http request base url.
+  /// The default value: http://localhost:8080
   static setBaseUrl(String url) => _baseUrl = url;
 
   static _getBody(Object? body) =>
       body != null ? (body is String ? body : jsonEncode(body)) : body;
 
+  /// Send a http request return for Map<String, dynamic>
   static Future<Map<String, dynamic>> sendRequest<T>(
     String method,
     String url, {
@@ -126,6 +131,7 @@ abstract class Http {
     }
   }
 
+  /// Send a GET http request return for Model<T>
   static Future<Model<T>> get<T>(
     String url,
     Converter<T> converter, {
@@ -149,7 +155,7 @@ abstract class Http {
       responseSetter: (r) => resp = r,
     );
 
-    var model = Model.fromJson(m, converter);
+    var model = Model.fromMap(m, converter);
     _executeCallbacks(
       resp?.statusCode ?? 0,
       model,
@@ -163,6 +169,7 @@ abstract class Http {
     return Future<Model<T>>.value(model);
   }
 
+  /// Send a POST http request return for Model<T>
   static Future<Model<T>> post<T>(
     String url,
     Converter<T> converter, {
@@ -187,7 +194,7 @@ abstract class Http {
       callbackError: callbackError,
       responseSetter: (r) => resp = r,
     );
-    var model = Model.fromJson(m, converter);
+    var model = Model.fromMap(m, converter);
     _executeCallbacks(
       resp?.statusCode ?? 0,
       model,
@@ -201,6 +208,7 @@ abstract class Http {
     return Future<Model<T>>.value(model);
   }
 
+  /// Send a PUT http request return for Model<T>
   static Future<Model<T>> put<T>(
     String url,
     Converter<T> converter, {
@@ -225,7 +233,7 @@ abstract class Http {
       callbackError: callbackError,
       responseSetter: (r) => resp = r,
     );
-    var model = Model.fromJson(m, converter);
+    var model = Model.fromMap(m, converter);
     _executeCallbacks(
       resp?.statusCode ?? 0,
       model,
@@ -239,6 +247,7 @@ abstract class Http {
     return Future<Model<T>>.value(model);
   }
 
+  /// Send a DELETE http request return for Model<T>
   static Future<Model<T>> delete<T>(
     String url,
     Converter<T> converter, {
@@ -263,7 +272,7 @@ abstract class Http {
       callbackError: callbackError,
       responseSetter: (r) => resp = r,
     );
-    var model = Model.fromJson(m, converter);
+    var model = Model.fromMap(m, converter);
     _executeCallbacks(
       resp?.statusCode ?? 0,
       model,
@@ -277,6 +286,7 @@ abstract class Http {
     return Future<Model<T>>.value(model);
   }
 
+  /// Send a POST file http request return for Model<T>
   static Future<Model<T>> postFile<T>(
     String url,
     Converter<T> converter, {
@@ -325,7 +335,7 @@ abstract class Http {
         log('other error: $error');
       }
     });
-    var model = Model.fromJson(m, converter);
+    var model = Model.fromMap(m, converter);
     _executeCallbacks(
       rsp?.statusCode ?? 0,
       model,
